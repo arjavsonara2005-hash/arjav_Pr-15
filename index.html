@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety Lock</title>
 
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .lock-box {
+            background: white;
+            width: 320px;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .lock-icon {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 20px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px 25px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .unlock {
+            background: #28a745;
+            color: white;
+        }
+
+        .reset {
+            background: #dc3545;
+            color: white;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="lock-box">
+
+        <div class="lock-icon" id="lockIcon">🔒</div>
+
+        <h1>Safety Lock</h1>
+
+        <p>Enter your 4-digit PIN</p>
+
+        <input
+            type="password"
+            id="pin"
+            maxlength="4"
+            placeholder="Enter PIN"
+        >
+
+        <br>
+
+        <button class="unlock" onclick="unlock()">Unlock</button>
+
+        <button class="reset" onclick="resetLock()">Reset</button>
+
+        <p id="message">🔒 System Locked</p>
+
+    </div>
+
+
+    <script>
+
+        // Correct PIN
+        const correctPIN = "1234";
+
+        function unlock() {
+
+            let enteredPIN = document.getElementById("pin").value;
+            let message = document.getElementById("message");
+            let icon = document.getElementById("lockIcon");
+
+            if (enteredPIN === correctPIN) {
+
+                icon.innerHTML = "🔓";
+                message.innerHTML = "✅ Safety Lock Unlocked";
+                message.style.color = "green";
+
+            } else {
+
+                icon.innerHTML = "🔒";
+                message.innerHTML = "❌ Incorrect PIN";
+                message.style.color = "red";
+
+            }
+        }
+
+
+        function resetLock() {
+
+            document.getElementById("pin").value = "";
+
+            document.getElementById("lockIcon").innerHTML = "🔒";
+
+            document.getElementById("message").innerHTML =
+                "🔒 System Locked";
+
+            document.getElementById("message").style.color = "black";
+        }
+
+    </script>
+
+</body>
+</html>
